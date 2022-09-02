@@ -1,14 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import { getHolidays, Holiday } from "./holiday-api";
+import {
+  PublicHoliday,
+  usePublicHolidaysQuery,
+} from "./queries/public-holidays";
 
 export function HolidayList({ countryCode }: HolidayListProps) {
-  const { data } = useQuery<Holiday[]>(["holidays", countryCode], () =>
-    getHolidays(countryCode)
-  );
+  const holidays = usePublicHolidaysQuery(countryCode);
 
   return (
     <ul className="space-y-2">
-      {data!.map((holiday) => (
+      {holidays.map((holiday) => (
         <HolidayListItem
           key={`${holiday.date}-${holiday.name}-${holiday.counties?.join(",")}`}
           holiday={holiday}
@@ -20,7 +20,7 @@ export function HolidayList({ countryCode }: HolidayListProps) {
 
 type HolidayListProps = { countryCode: string };
 
-function HolidayListItem({ holiday }: { holiday: Holiday }) {
+function HolidayListItem({ holiday }: { holiday: PublicHoliday }) {
   return (
     <li>
       <span className="text-slate-500">{holiday.date}</span>

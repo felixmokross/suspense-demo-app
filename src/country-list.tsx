@@ -1,12 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { getCountries } from "./holiday-api";
+import { useCountries } from "./queries/countries";
 
 export function CountryList() {
-  const { data } = useQuery(["countries"], getCountries);
+  const countries = useCountries();
   return (
     <ul className="space-y-1">
-      {data?.map((country) => (
+      {countries.map((country) => (
         <li key={country.countryCode}>
           <Link
             to={country.countryCode.toLowerCase()}

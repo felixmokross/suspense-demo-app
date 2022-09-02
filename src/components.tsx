@@ -14,11 +14,13 @@ export function LoadingIndicator() {
   return <p className="italic text-gray-900 animate-pulse">Loading…</p>;
 }
 
-export function ErrorMessage({ resetErrorBoundary }: FallbackProps) {
+export function ErrorMessage({ resetErrorBoundary, error }: FallbackProps) {
   return (
-    <div className="text-red-700 font-medium bg-red-50 py-4 px-8 rounded-lg flex items-center justify-center gap-2">
-      <p>Oh no, an error occurred! </p>
-      <Button onClick={() => resetErrorBoundary()}>Try again</Button>
+    <div className="text-red-700 bg-red-50 py-4 px-8 rounded-lg text-center">
+      <div className="font-medium flex items-center justify-center gap-2">
+        <p>Oh no, an error occurred! </p>
+        <Button onClick={() => resetErrorBoundary()}>Try again</Button>
+      </div>
     </div>
   );
 }
