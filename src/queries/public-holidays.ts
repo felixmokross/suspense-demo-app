@@ -2,9 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { delay, fetchFromHolidayApi } from "../util";
 
 export function usePublicHolidaysQuery(countryCode: string) {
-  const { data } = useQuery(publicHolidaysQuery(countryCode));
-  if (!data) throw new Error("No data");
-  return data;
+  return useQuery(publicHolidaysQuery(countryCode)).data!;
 }
 
 function publicHolidaysQuery(countryCode: string) {
