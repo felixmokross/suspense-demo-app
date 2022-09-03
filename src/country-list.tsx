@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "./components";
 import { useCountries } from "./queries/countries";
 
 export function CountryList() {
@@ -7,12 +7,7 @@ export function CountryList() {
     <ul className="space-y-1">
       {countries.map((country) => (
         <li key={country.countryCode}>
-          <Link
-            to={country.countryCode.toLowerCase()}
-            className="hover:underline text-sky-600"
-          >
-            {country.name}
-          </Link>
+          <Link to={country.countryCode.toLowerCase()}>{country.name}</Link>
         </li>
       ))}
     </ul>

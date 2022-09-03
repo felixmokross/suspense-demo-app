@@ -5,6 +5,10 @@ import {
 } from "react";
 import { FallbackProps } from "react-error-boundary";
 import { cn } from "./classnames";
+import {
+  Link as RouterLink,
+  LinkProps as RouterLinkProps,
+} from "react-router-dom";
 
 export function Heading({ children }: PropsWithChildren<{}>) {
   return <h3 className="text-2xl font-medium text-slate-900">{children}</h3>;
@@ -12,6 +16,17 @@ export function Heading({ children }: PropsWithChildren<{}>) {
 
 export function LoadingIndicator() {
   return <p className="italic text-gray-900 animate-pulse">Loading…</p>;
+}
+
+export function Link({ className, children, ...props }: RouterLinkProps) {
+  return (
+    <RouterLink
+      className={cn("hover:underline text-sky-600", className)}
+      {...props}
+    >
+      {children}
+    </RouterLink>
+  );
 }
 
 export function ErrorMessage({ resetErrorBoundary, error }: FallbackProps) {

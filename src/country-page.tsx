@@ -1,5 +1,6 @@
 import { Suspense } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Link } from "./components";
 import { Heading, LoadingIndicator } from "./components";
 import { HolidayList } from "./holiday-list";
 import { useCountryInfo } from "./queries/country-info";
@@ -10,8 +11,8 @@ export function CountryPage() {
 
   return (
     <div className="space-y-4">
-      <p className="hover:underline text-sky-600">
-        <Link to="../..">Back to countries</Link>
+      <p>
+        <Link to="..">Back to countries</Link>
       </p>
 
       <Suspense fallback={<LoadingIndicator />}>
